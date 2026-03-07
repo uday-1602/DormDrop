@@ -1,0 +1,288 @@
+/* Outer wrapper: fills exactly the viewport below the header, no outer scroll ever */
+.messaging-page-wrapper {
+    height: calc(100vh - var(--header-height));
+    overflow: hidden;
+    padding: var(--space-3) var(--space-4);
+    box-sizing: border-box;
+}
+
+.messaging-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;  /* fill the wrapper's padded area */
+    min-height: 0;
+}
+
+/* Chat Header */
+.chat-header {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-gray-200);
+    background-color: var(--color-gray-50);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+    flex-shrink: 0;
+}
+
+.chat-header-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-3);
+    min-width: 0; /* allow text truncation */
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: var(--color-gray-600);
+    transition: all var(--transition-fast);
+    cursor: pointer;
+    padding: 0;
+    background: transparent;
+    border: none;
+    flex-shrink: 0;
+}
+
+.back-button:hover {
+    background-color: var(--color-gray-200);
+    color: var(--color-black);
+}
+
+.chat-product-info {
+    display: flex;
+    gap: var(--space-3);
+    align-items: center;
+    min-width: 0;
+}
+
+.chat-product-image {
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    background-color: var(--color-gray-100);
+    flex-shrink: 0;
+}
+
+.chat-product-title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chat-product-price {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+}
+
+.chat-seller-info {
+    text-align: right;
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+
+/* Messages Area */
+.messages-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    min-height: 0; /* allow flex child to shrink properly */
+}
+
+.empty-messages {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.message {
+    max-width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.message-sent {
+    align-self: flex-end;
+}
+
+.message-received {
+    align-self: flex-start;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.message-sender {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-gray-600);
+}
+
+.message-time {
+    font-size: var(--font-size-xs);
+    color: var(--color-gray-500);
+}
+
+.message-content {
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    line-height: 1.5;
+}
+
+.message-sent .message-content {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    border-bottom-right-radius: 4px;
+}
+
+.message-received .message-content {
+    background-color: var(--color-gray-100);
+    color: var(--color-black);
+    border-bottom-left-radius: 4px;
+}
+
+/* Message Input */
+.message-input-form {
+    padding: var(--space-3);
+    border-top: 1px solid var(--color-gray-200);
+    background-color: var(--color-white);
+    display: flex;
+    gap: var(--space-2);
+    align-items: flex-end;
+    flex-shrink: 0; /* Input bar never shrinks away */
+}
+
+.message-input {
+    flex: 1;
+    padding: var(--space-2);
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    font-family: inherit;
+    resize: none;
+    transition: all var(--transition-fast);
+}
+
+.message-input:focus {
+    outline: none;
+    border-color: var(--color-black);
+    box-shadow: 0 0 0 3px rgba(10, 10, 10, 0.1);
+}
+
+.send-button {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.send-button:hover:not(:disabled) {
+    background-color: var(--color-gray-800);
+    transform: scale(1.05);
+}
+
+.send-button:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.send-button:disabled {
+    background-color: var(--color-gray-400);
+    cursor: not-allowed;
+}
+
+/* ── Short window (e.g. when browser is resized to be vertically small) ──
+   Compact the header further to reclaim vertical space for messages. */
+@media (max-height: 600px) {
+    .chat-header {
+        padding: var(--space-2) var(--space-3);
+    }
+
+    .chat-product-image {
+        width: 32px;
+        height: 32px;
+    }
+
+    .back-button {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* ── Mobile width (≤640px) ── */
+@media (max-width: 640px) {
+    .messaging-page-wrapper {
+        padding: var(--space-2);
+    }
+
+    .messaging-container {
+        border-radius: var(--radius-md);
+    }
+
+    .chat-header {
+        padding: var(--space-2) var(--space-3);
+    }
+
+    .chat-product-image {
+        width: 36px;
+        height: 36px;
+    }
+
+    .chat-seller-info {
+        text-align: right;
+    }
+
+    .message {
+        max-width: 85%;
+    }
+
+    .send-button {
+        width: 36px;
+        height: 36px;
+    }
+
+    .message-input-form {
+        padding: var(--space-2);
+        gap: var(--space-2);
+        align-items: center;
+    }
+
+    .message-input {
+        padding: 0.625rem 0.875rem;
+        line-height: 1.25;
+        max-height: 100px;
+    }
+}

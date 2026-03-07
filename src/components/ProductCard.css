@@ -1,0 +1,55 @@
+.product-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: transform var(--transition-base);
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+}
+
+.product-card-image {
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: var(--color-gray-100);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: var(--space-2);
+}
+
+.product-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.product-card:hover .product-card-image img {
+    transform: scale(1.05);
+}
+
+.product-card-content {
+    padding: var(--space-1) 0;
+}
+
+.product-card-title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--space-1);
+    color: var(--color-black);
+    line-height: 1.4;
+}
+
+.product-card-college {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+    margin-bottom: var(--space-1);
+}
+
+.product-card-price {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-black);
+}

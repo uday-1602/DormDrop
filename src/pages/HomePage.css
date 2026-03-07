@@ -1,0 +1,290 @@
+.page {
+    min-height: calc(100vh - var(--header-height));
+    padding: var(--space-6) 0;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: var(--space-2);
+}
+
+.hero-title {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-2);
+    letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--color-gray-600);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.filters {
+    display: flex;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.filter-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.filter-input,
+.filter-select {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: var(--font-size-base);
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    background-color: var(--color-white);
+}
+
+.filter-input:focus,
+.filter-select:focus {
+    outline: none;
+    border-color: var(--color-black);
+    box-shadow: 0 0 0 3px rgba(10, 10, 10, 0.1);
+}
+
+.filter-select {
+    cursor: pointer;
+}
+
+.filter-clear {
+    padding: 0.875rem 1.5rem;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-gray-700);
+    background-color: var(--color-gray-100);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.filter-clear:hover {
+    background-color: var(--color-gray-200);
+}
+
+.results-info {
+    margin-bottom: var(--space-3);
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: var(--space-4);
+    padding: 0 var(--space-6);
+}
+
+@media (min-width: 640px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .products-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+}
+
+.empty-state {
+    text-align: center;
+    padding: var(--space-10) 0;
+}
+
+@media (max-width: 640px) {
+    .hero-title {
+        font-size: var(--font-size-3xl);
+    }
+
+    .filter-group {
+        min-width: 100%;
+    }
+}
+
+.categories-section {
+    margin-bottom: var(--space-4);
+    padding: var(--space-2) 0;
+}
+
+/* Category Dropdown Styles */
+.categories-filter-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: 0;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.categories-dropdown-container {
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    flex-grow: 1;
+    max-width: 500px;
+    /* Fixed maximum width even on desktop expansion */
+}
+
+.filter-label {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-left: var(--space-1);
+}
+
+/* Hero Filters - 60-20-20 Layout */
+.hero-filters {
+    display: flex;
+    gap: var(--space-2);
+    margin-top: var(--space-6);
+    max-width: 100%;
+    padding: 0 var(--space-6);
+}
+
+.hero-search-input {
+    flex: 1;
+    padding: 0.875rem 1rem;
+    font-size: var(--font-size-base);
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    background-color: var(--color-white);
+}
+
+.hero-search-input:focus {
+    outline: none;
+    border-color: var(--color-black);
+    box-shadow: 0 0 0 3px rgba(10, 10, 10, 0.1);
+}
+
+.hero-filters .college-selector-wrapper {
+    flex: 0 0 250px;
+    /* Give it a bit more space since college names are long */
+}
+
+.hero-filters .input-group {
+    margin-bottom: 0;
+}
+
+.hero-filters .input {
+    padding: 0.875rem 1rem;
+    font-size: var(--font-size-base);
+}
+
+.hero-filter-input {
+    flex: 0 0 150px;
+    padding: 0.875rem 1rem;
+    font-size: var(--font-size-base);
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    background-color: var(--color-white);
+}
+
+.hero-filter-select:focus,
+.hero-filter-input:focus {
+    outline: none;
+    border-color: var(--color-black);
+    box-shadow: 0 0 0 3px rgba(10, 10, 10, 0.1);
+}
+
+.hero-filter-select {
+    cursor: pointer;
+}
+
+.filter-clear-inline {
+    padding: 0 1.5rem;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-gray-700);
+    background-color: var(--color-gray-100);
+    border: 1.5px solid transparent;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+    height: 50px;
+    /* Exact height to match CategorySelector */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-clear-inline:hover {
+    background-color: var(--color-gray-200);
+    color: var(--color-black);
+}
+
+@media (max-width: 768px) {
+    .hero-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+        padding: 0;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .hero-search-input {
+        flex: 1 1 100%;
+    }
+
+    .hero-filters .college-selector-wrapper,
+    .hero-filter-input {
+        width: calc(50% - (var(--space-2) / 2));
+        flex: 0 0 calc(50% - (var(--space-2) / 2));
+    }
+}
+
+/* Pagination Styles */
+.pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+    margin: var(--space-10) auto;
+    padding-bottom: var(--space-8);
+}
+
+.pagination-btn {
+    padding: var(--space-2) var(--space-4);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-md);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-black);
+    transition: all var(--transition-base);
+    min-width: 100px;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    border-color: var(--color-black);
+    background-color: var(--color-gray-100);
+}
+
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: var(--color-gray-100);
+}
+
+.pagination-info {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+    font-weight: var(--font-weight-medium);
+}

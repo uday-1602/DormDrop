@@ -1,0 +1,125 @@
+.header {
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-gray-200);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--header-height);
+}
+
+.header-container {
+    width: 100%;
+    padding: 0 var(--space-4);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-height);
+}
+
+.logo h1 {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.logo:hover {
+    color: var(--color-black);
+}
+
+.nav {
+    display: flex;
+    gap: var(--space-4);
+    align-items: center;
+    margin-left: auto;
+    /* Pushes nav and subsequent elements to the right */
+    margin-right: var(--space-3);
+}
+
+.nav-link {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-gray-700);
+    transition: color var(--transition-fast);
+}
+
+.nav-link:hover {
+    color: var(--color-black);
+}
+
+.messages-icon-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-dot {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 8px;
+    height: 8px;
+    background-color: #ef4444;
+    border-radius: 50%;
+    border: 2px solid var(--color-white);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.user-name-link {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-700);
+    font-weight: var(--font-weight-semibold);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+}
+
+.user-name-link:hover {
+    color: var(--color-black);
+    background-color: var(--color-gray-100);
+}
+
+/* Person icon — hidden on desktop, shown on mobile in place of name */
+.user-icon-link {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gray-700);
+    transition: color var(--transition-fast);
+}
+
+.user-icon-link:hover {
+    color: var(--color-black);
+}
+
+@media (max-width: 640px) {
+    .nav {
+        gap: var(--space-3);
+        margin-right: var(--space-2);
+    }
+
+    .user-name-link {
+        display: none;
+    }
+
+    .user-icon-link {
+        display: flex;
+    }
+
+    .logo h1 {
+        font-size: var(--font-size-lg);
+    }
+
+    .header-container {
+        padding: 0 var(--space-3);
+    }
+}
