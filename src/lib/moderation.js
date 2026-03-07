@@ -2,8 +2,6 @@ import OpenAI from 'openai';
 import { analyzeContent as analyzeGemini, categorizeListing } from './gemini';
 
 // --- Configuration ---
-const SIGHTENGINE_USER = import.meta.env.VITE_SIGHTENGINE_USER;
-const SIGHTENGINE_SECRET = import.meta.env.VITE_SIGHTENGINE_SECRET;
 const OPENAI_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 
 // --- Layer 1: Client-Side Text Filters (Zero Cost, Instant) ---
@@ -26,34 +24,7 @@ async function checkLocalText(text) {
     return { allowed: true };
 }
 
-// --- Layer 2: Sightengine (Optional, only if keys exist) ---
-async function checkSightengine(imageFile) {
-    if (!SIGHTENGINE_USER || !SIGHTENGINE_SECRET) return { allowed: true, skipped: true };
-
-    const formData = new FormData();
-    formData.append('media', imageFile);
-    formData.append('models', 'nudity,wad,offensive');
-    formData.append('api_user', SIGHTENGINE_USER);
-    formData.append('api_secret', SIGHTENGINE_SECRET);
-
-    try {
-        const response = await fetch('https://api.sightengine.com/1.0/check.json', {
-            method: 'POST',
-            body: formData,
-        });
-        const data = await response.json();
-        if (data.weapon > 0.5) return { allowed: false, reason: "Weapon detected in image." };
-        if (data.alcohol > 0.5) return { allowed: false, reason: "Alcohol detected in image." };
-        if (data.drugs > 0.5) return { allowed: false, reason: "Drugs detected in image." };
-        if (data.nudity && data.nudity.safe < 0.5) return { allowed: false, reason: "Explicit content detected." };
-        return { allowed: true };
-    } catch (error) {
-        console.warn("Sightengine check failed, skipping:", error.message);
-        return { allowed: true };
-    }
-}
-
-// --- Layer 3: OpenAI omni-moderation (fallback when Gemini quota exhausted) ---
+// --- Layer 2: OpenAI omni-moderation (fallback when Gemini quota exhausted) ---
 async function checkOpenAI(imageFile, title, description) {
     if (!OPENAI_KEY) return { allowed: true, skipped: true };
 
@@ -108,11 +79,7 @@ export async function checkSafety(imageFile, title, description) {
     const textResult = await checkLocalText(text);
     if (!textResult.allowed) return textResult;
 
-    // 2. Optional Sightengine image check (skipped if no keys)
-    const sightResult = await checkSightengine(imageFile);
-    if (!sightResult.allowed) return sightResult;
-
-    // 3. Gemini AI (primary — free, 1500 req/day)
+    // 2. Gemini AI (primary — free, 1500 req/day)
     //    Falls back to OpenAI if quota exceeded, then fails open if both unavailable.
     try {
         return await analyzeGemini(imageFile, title, description);
