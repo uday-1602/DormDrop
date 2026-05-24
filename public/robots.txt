@@ -5,4 +5,4 @@ Allow: /
 Disallow: /account
 Disallow: /messages
 
-Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: https://dormdrop.co.in/sitemap.xml
