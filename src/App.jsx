@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import AuthModal from './components/AuthModal';
 import HomePage from './pages/HomePage';
 import ProductDetailPage from './pages/ProductDetailPage';
@@ -59,6 +60,8 @@ function AppContent() {
           }
         />
       </Routes>
+
+      <Footer />
 
       {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} />}
     </>
