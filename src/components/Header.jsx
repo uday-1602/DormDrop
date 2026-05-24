@@ -67,7 +67,7 @@ const Header = ({ onSignInClick }) => {
             <div className="header-container">
                 <div className="header-content">
                     <Link to="/" className="logo">
-                        <h1>DormDrop</h1>
+                        <img src="/logo.png" alt="DormDrop" className="logo-img" />
                     </Link>
 
                     <nav className="nav">
