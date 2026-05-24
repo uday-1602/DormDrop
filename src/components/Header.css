@@ -26,13 +26,6 @@
     letter-spacing: -0.02em;
 }
 
-.logo-img {
-    height: 28px;
-    width: auto;
-    display: block;
-    object-fit: contain;
-}
-
 .logo:hover {
     color: var(--color-black);
 }
@@ -124,10 +117,6 @@
 
     .logo h1 {
         font-size: var(--font-size-lg);
-    }
-
-    .logo-img {
-        height: 24px;
     }
 
     .header-container {
