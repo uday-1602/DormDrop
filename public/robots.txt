@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Block protected/auth-required pages from crawlers
+Disallow: /account
+Disallow: /messages
+
+Sitemap: https://yourdomain.com/sitemap.xml
