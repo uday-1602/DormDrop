@@ -69,7 +69,7 @@ const ProductDetailPage = () => {
     };
 
     return (
-        <div className="page">
+        <div className="page product-detail-page">
             <div className="container">
                 <div className="product-detail">
                     {/* Image Gallery */}

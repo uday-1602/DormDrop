@@ -20,10 +20,15 @@ const MessagingPage = () => {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
     const [loading, setLoading] = useState(true);
-    const messagesEndRef = useRef(null);
+    const messagesAreaRef = useRef(null);
 
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    const scrollToBottom = (behavior = 'auto') => {
+        if (messagesAreaRef.current) {
+            messagesAreaRef.current.scrollTo({
+                top: messagesAreaRef.current.scrollHeight,
+                behavior: behavior
+            });
+        }
     };
 
     const markAsRead = async (msgs) => {
@@ -108,7 +113,7 @@ const MessagingPage = () => {
                 markAsRead(filtered);
             }
             setLoading(false);
-            scrollToBottom();
+            setTimeout(() => scrollToBottom('auto'), 50);
         };
 
         fetchMessages();
@@ -137,7 +142,7 @@ const MessagingPage = () => {
                                 return [...prev, newMsg];
                             });
                             markAsRead([newMsg]);
-                            scrollToBottom();
+                            setTimeout(() => scrollToBottom('smooth'), 50);
                         }
                     } else if (payload.eventType === 'UPDATE') {
                         const updatedMsg = payload.new;
@@ -185,7 +190,7 @@ const MessagingPage = () => {
                 if (prev.some(m => m.id === data.id)) return prev;
                 return [...prev, data];
             });
-            scrollToBottom();
+            setTimeout(() => scrollToBottom('smooth'), 50);
         }
 
 
@@ -231,7 +236,7 @@ const MessagingPage = () => {
                     </div>
 
                     {/* Messages Area */}
-                    <div className="messages-area">
+                    <div className="messages-area" ref={messagesAreaRef}>
                         {loading && <p className="text-center text-gray-400 py-4">Loading messages...</p>}
 
                         {!loading && messages.length === 0 && (
@@ -258,7 +263,6 @@ const MessagingPage = () => {
                                 </div>
                             );
                         })}
-                        <div ref={messagesEndRef} />
                     </div>
 
                     {/* Message Input or Deleted Banner */}

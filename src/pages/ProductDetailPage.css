@@ -1,8 +1,12 @@
+.product-detail-page {
+    padding-top: var(--space-3) !important;
+}
+
 .product-detail {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-6);
-    margin-top: var(--space-4);
+    margin-top: 0;
 }
 
 @media (min-width: 768px) {

@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -17,11 +17,25 @@ const ProtectedRoute = ({ children }) => {
   return isLoggedIn ? children : <Navigate to="/" />;
 };
 
+// Scroll to top on navigation (except for homepage, which manages its own scroll restoration)
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    if (pathname !== '/') {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname]);
+
+  return null;
+};
+
 function AppContent() {
   const [showAuthModal, setShowAuthModal] = useState(false);
 
   return (
     <>
+      <ScrollToTop />
       <Header onSignInClick={() => setShowAuthModal(true)} />
 
       <Routes>

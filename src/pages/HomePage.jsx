@@ -53,6 +53,40 @@ const HomePage = () => {
         setCurrentPage(1);
     }, [searchTerm, selectedCollege, maxPrice, selectedCategory]);
 
+    // Save scroll position when user scrolls the homepage
+    useEffect(() => {
+        const handleScroll = () => {
+            sessionStorage.setItem('homepage_scroll_pos', window.scrollY);
+        };
+        
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    // Restore scroll position once loading is complete
+    useEffect(() => {
+        if (!loading) {
+            const savedScrollPos = sessionStorage.getItem('homepage_scroll_pos');
+            if (savedScrollPos) {
+                const timer = setTimeout(() => {
+                    window.scrollTo(0, parseInt(savedScrollPos, 10));
+                }, 50);
+                return () => clearTimeout(timer);
+            } else {
+                window.scrollTo(0, 0);
+            }
+        }
+    }, [loading]);
+
+    // Scroll to top when filters or page changes (excluding initial load)
+    useEffect(() => {
+        if (!loading) {
+            window.scrollTo(0, 0);
+        }
+    }, [currentPage, searchTerm, selectedCollege, maxPrice, selectedCategory]);
+
     // Categories imported from constants
 
     // Filter listings based on search and filters
