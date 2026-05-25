@@ -54,10 +54,6 @@ const CreateListingPage = () => {
         const rawFiles = Array.from(e.target.files);
         const newErrors = {};
 
-        if (photos.length + rawFiles.length < 3) {
-            newErrors.photos = 'Please upload at least 3 photos';
-        }
-
         // Convert HEIC/HEIF to JPEG first, then process
         const files = await Promise.all(rawFiles.map(normalizeToJpeg));
 
@@ -79,15 +75,30 @@ const CreateListingPage = () => {
             }
         }
 
+        const totalPhotos = photos.length + validFiles.length;
+        if (!newErrors.photos) {
+            if (totalPhotos >= 3) {
+                newErrors.photos = '';
+            } else {
+                newErrors.photos = 'Please upload at least 3 photos';
+            }
+        }
+
         setPhotos(prev => [...prev, ...validFiles]);
         setPreviewUrls(prev => [...prev, ...newPreviews]);
         setErrors(prev => ({ ...prev, ...newErrors }));
     };
 
     const removePhoto = (index) => {
-        setPhotos(prev => prev.filter((_, i) => i !== index));
+        const updatedPhotos = photos.filter((_, i) => i !== index);
+        setPhotos(updatedPhotos);
         setPreviewUrls(prev => prev.filter((_, i) => i !== index));
-        setErrors(prev => ({ ...prev, photos: '' }));
+        
+        if (updatedPhotos.length < 3) {
+            setErrors(prev => ({ ...prev, photos: 'Please upload at least 3 photos' }));
+        } else {
+            setErrors(prev => ({ ...prev, photos: '' }));
+        }
     };
 
     const validateForm = () => {
@@ -244,7 +255,7 @@ const CreateListingPage = () => {
                             <label className="input-label">
                                 Photos<span className="required">*</span>
                                 <span className="text-gray-500 font-normal ml-2">
-                                    (Min 3 photos, max 5MB each)
+                                    (Min 3 photos, max 5MB each. The first photo is the cover photo.)
                                 </span>
                             </label>
 
