@@ -61,7 +61,17 @@ const run = () => {
         'NMIMS Mumbai, Mumbai', 'ICFAI University, Hyderabad', 'Jain University, Bangalore', 
         'Hindustan Institute of Technology and Science, Chennai', 'Vel Tech University, Chennai', 
         'Karunya Institute of Technology, Coimbatore', 'Bannari Amman Institute of Technology, Sathyamangalam',
-        'MIT WPU, Pune', 'MIT ADT, Pune', 'Gautam Buddha University, Greater Noida'
+        'MIT WPU, Pune', 'MIT ADT, Pune', 'Gautam Buddha University, Greater Noida',
+        'Ajeenkya DY Patil University, Pune',
+        'Dr. D.Y. Patil College of Engineering, Akurdi, Pune',
+        'Dr. D.Y. Patil Institute of Technology, Pimpri, Pune',
+        'DY Patil University, Ambi, Pune',
+        'Dr. D.Y. Patil Medical College, Pimpri, Pune',
+        'Dr. D.Y. Patil Institute of Management & Research, Pimpri, Pune',
+        'Dr. D.Y. Patil Arts, Commerce and Science College, Akurdi, Pune',
+        'Dr. D.Y. Patil Arts, Commerce and Science College, Pimpri, Pune',
+        'Dr. D.Y. Patil School of Engineering, Lohegaon, Pune',
+        'Dr. D.Y. Patil School of Management, Lohegaon, Pune'
     ];
 
     for (const c of originalColleges) {
