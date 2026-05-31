@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 import { useAuth } from '../context/AuthContext';
+import { ProductDetailSkeleton } from '../components/Skeleton';
 import Button from '../components/Button';
 import './ProductDetailPage.css';
 
@@ -42,7 +43,7 @@ const ProductDetailPage = () => {
         return (
             <div className="page">
                 <div className="container">
-                    <div className="text-center py-20 text-gray-500">Loading details...</div>
+                    <ProductDetailSkeleton />
                 </div>
             </div>
         );

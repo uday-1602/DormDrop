@@ -6,6 +6,7 @@ import CategorySelector from '../components/CategorySelector';
 import { supabase } from '../lib/supabaseClient';
 import { useAuth } from '../context/AuthContext';
 import ProductCard from '../components/ProductCard';
+import { ProductSkeletonGrid } from '../components/Skeleton';
 import './HomePage.css';
 
 const HomePage = () => {
@@ -189,21 +190,21 @@ const HomePage = () => {
             )}
 
             {/* Products Grid */}
-            <div className="products-grid">
-                {loading ? (
-                    <div className="col-span-full text-center py-10 text-gray-500">
-                        Loading products...
-                    </div>
-                ) : paginatedListings.length > 0 ? (
-                    paginatedListings.map(listing => (
-                        <ProductCard key={listing.id} listing={listing} />
-                    ))
-                ) : (
-                    <div className="empty-state">
-                        <p className="text-gray-600">No products found. Try adjusting your filters.</p>
-                    </div>
-                )}
-            </div>
+            {loading ? (
+                <ProductSkeletonGrid count={8} />
+            ) : (
+                <div className="products-grid">
+                    {paginatedListings.length > 0 ? (
+                        paginatedListings.map(listing => (
+                            <ProductCard key={listing.id} listing={listing} />
+                        ))
+                    ) : (
+                        <div className="empty-state">
+                            <p className="text-gray-600">No products found. Try adjusting your filters.</p>
+                        </div>
+                    )}
+                </div>
+            )}
 
             {/* Pagination Controls */}
             {totalPages > 1 && (

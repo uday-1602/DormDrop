@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 import { useAuth } from '../context/AuthContext';
-import Button from '../components/Button';
+import { ChatThreadSkeleton } from '../components/Skeleton';
 import './MessagingPage.css';
 
 const MessagingPage = () => {
@@ -196,7 +196,15 @@ const MessagingPage = () => {
 
     };
 
-    if (!listing) return <div className="p-10 text-center">Loading...</div>;
+    if (!listing) {
+        return (
+            <div className="messaging-page-wrapper">
+                <div className="messaging-container">
+                    <ChatThreadSkeleton />
+                </div>
+            </div>
+        );
+    }
 
     const displayImages = listing.images || listing.photos || [];
 

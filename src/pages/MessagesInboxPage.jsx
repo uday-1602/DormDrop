@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 import { useAuth } from '../context/AuthContext';
+import { InboxSkeletonList } from '../components/Skeleton';
 import './MessagesInboxPage.css';
 
 const MessagesInboxPage = () => {
@@ -181,11 +182,9 @@ const MessagesInboxPage = () => {
                     <h1 className="page-title">Messages</h1>
                     <p className="page-subtitle">Your conversations</p>
 
-                    {loading && (
-                        <div className="py-10 text-center text-gray-500">Loading conversations...</div>
-                    )}
-
-                    {!loading && conversations.length === 0 ? (
+                    {loading ? (
+                        <InboxSkeletonList count={3} />
+                    ) : conversations.length === 0 ? (
                         <div className="empty-state">
                             <p className="text-gray-600">No messages yet</p>
                         </div>

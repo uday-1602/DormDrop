@@ -1,0 +1,169 @@
+/* ===== SKELETON BASE & SHIMMER EFFECT ===== */
+@keyframes skeleton-shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.skeleton {
+    background: linear-gradient(
+        90deg, 
+        var(--color-gray-100) 25%, 
+        var(--color-gray-200) 50%, 
+        var(--color-gray-100) 75%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.5s infinite linear;
+    border-radius: var(--radius-sm);
+    display: inline-block;
+}
+
+.skeleton.circle {
+    border-radius: 50%;
+}
+
+.skeleton.rect {
+    border-radius: var(--radius-md);
+}
+
+.skeleton.text {
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.25rem;
+}
+
+/* Helpers */
+.mb-2 { margin-bottom: var(--space-2) !important; }
+.mb-4 { margin-bottom: var(--space-4) !important; }
+.mt-2 { margin-top: var(--space-2) !important; }
+.mr-3 { margin-right: var(--space-3) !important; }
+
+.skeleton-divider {
+    border: 0;
+    border-top: 1px solid var(--color-gray-100);
+    margin: var(--space-4) 0;
+}
+
+/* ===== 1. PRODUCT CARD SKELETON ===== */
+.product-card-skeleton {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-card-skeleton-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+}
+
+.product-card-skeleton-content {
+    padding: var(--space-3);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.product-card-skeleton-title {
+    height: 1.25rem;
+}
+
+.product-card-skeleton-college {
+    height: 0.875rem;
+}
+
+.product-card-skeleton-price {
+    height: 1.125rem;
+    margin-top: auto;
+}
+
+/* ===== 2. PRODUCT DETAIL SKELETON ===== */
+.product-detail-skeleton {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-6);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-xl);
+    padding: var(--space-5);
+}
+
+.product-detail-skeleton-image-gallery {
+    width: 100%;
+    aspect-ratio: 4/3;
+    max-height: 480px;
+}
+
+.product-detail-skeleton-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-detail-skeleton-btn {
+    margin-top: auto;
+}
+
+@media (max-width: 768px) {
+    .product-detail-skeleton {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+        padding: var(--space-3);
+    }
+}
+
+/* ===== 3. INBOX ROW SKELETON ===== */
+.inbox-row-skeleton {
+    display: flex;
+    padding: var(--space-4);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-3);
+    background-color: var(--color-white);
+    gap: var(--space-3);
+}
+
+.inbox-row-skeleton-avatar {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+}
+
+.inbox-row-skeleton-content {
+    flex-grow: 1;
+}
+
+.inbox-row-skeleton-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ===== 4. CHAT THREAD SKELETON ===== */
+.chat-thread-skeleton {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.message-skeleton {
+    display: flex;
+    margin-bottom: var(--space-3);
+}
+
+.message-skeleton-received {
+    justify-content: flex-start;
+}
+
+.message-skeleton-sent {
+    justify-content: flex-end;
+}

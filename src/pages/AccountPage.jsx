@@ -3,6 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { supabase } from '../lib/supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
+import { ProductSkeletonGrid } from '../components/Skeleton';
 import Button from '../components/Button';
 import CollegeSelector from '../components/CollegeSelector';
 import './AccountPage.css';
@@ -196,7 +197,7 @@ const AccountPage = () => {
                 <div className="account-section">
                     <h2 className="section-title">My Listings</h2>
                     {loading ? (
-                        <div className="py-10 text-center text-gray-500">Loading your listings...</div>
+                        <ProductSkeletonGrid count={3} />
                     ) : userListings.length > 0 ? (
                         <div className="products-grid">
                             {userListings.map(listing => {
