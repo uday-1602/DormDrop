@@ -32,6 +32,8 @@ const ScrollToTop = () => {
 
 function AppContent() {
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const { pathname } = useLocation();
+  const shouldHideFooter = pathname.startsWith('/messages');
 
   return (
     <>
@@ -75,7 +77,7 @@ function AppContent() {
         />
       </Routes>
 
-      <Footer />
+      {!shouldHideFooter && <Footer />}
 
       {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} />}
     </>
