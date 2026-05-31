@@ -27,3 +27,8 @@ dist-ssr
 .env
 .env.local
 .env.production
+
+# Marketing & Generated media assets
+gemini-video-assets/
+*TEMP_MPY*
+*.mp4

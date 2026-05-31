@@ -13,6 +13,7 @@
     "@google/generative-ai": "^0.24.1",
     "@supabase/supabase-js": "^2.87.1",
     "@tensorflow/tfjs": "^4.22.0",
+    "@vercel/analytics": "^2.0.1",
     "axios": "^1.13.2",
     "dotenv": "^17.2.3",
     "firebase": "^12.6.0",
