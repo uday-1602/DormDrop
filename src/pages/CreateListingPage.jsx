@@ -44,6 +44,11 @@ const CreateListingPage = () => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
+        if (name === 'price') {
+            if (value !== '' && (!/^\d+$/.test(value) || parseInt(value) < 0)) {
+                return;
+            }
+        }
         setFormData(prev => ({ ...prev, [name]: value }));
         if (errors[name]) {
             setErrors(prev => ({ ...prev, [name]: '' }));
@@ -244,11 +249,13 @@ const CreateListingPage = () => {
                             type="number"
                             value={formData.price}
                             onChange={handleInputChange}
-                            placeholder="0.00"
+                            placeholder="0"
                             error={errors.price}
                             required
-                            step="0.01"
+                            step="1"
                             min="0"
+                            onWheel={(e) => e.target.blur()}
+                            onKeyDown={(e) => ['e', 'E', '+', '-', '.'].includes(e.key) && e.preventDefault()}
                         />
 
                         <div className="input-group">

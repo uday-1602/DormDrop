@@ -139,7 +139,16 @@ const HomePage = () => {
                             className="hero-filter-input"
                             placeholder="Max Price"
                             value={maxPrice}
-                            onChange={(e) => setMaxPrice(e.target.value)}
+                            onChange={(e) => {
+                                const val = e.target.value;
+                                if (val === '' || parseInt(val) >= 0) {
+                                    setMaxPrice(val);
+                                }
+                            }}
+                            min="0"
+                            step="1"
+                            onWheel={(e) => e.target.blur()}
+                            onKeyDown={(e) => ['e', 'E', '+', '-', '.'].includes(e.key) && e.preventDefault()}
                         />
                     </div>
                 </div>
